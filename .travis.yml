@@ -1,0 +1,74 @@
+language: php
+
+php:
+  - 5.5
+
+
+env:
+  global:
+    # Your Pantheon site's UUID (e.g. from your dashboard URL)
+    - PUUID='f006720e-7c7f-4c71-a692-911780c1d6fc'
+
+    # Your Pantheon site's name.
+    - PNAME='golden-god-demo'
+
+    # A random password for the Drupal site install.
+    - RANDPASS=$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 )
+
+    # SECRET/PRIVATE VARIABLES
+    #
+    # These are created by using the travis command locally to encrypt some values.
+    #
+    # See: http://docs.travis-ci.com/user/build-configuration/#Secure-environment-variables
+    #
+    # PEMAIL environment variable: represents the Pantheon account e-mail with
+    # access to this site. Used to authenticate to Pantheon via Terminus. You
+    # must cd to your project root and run:
+    #
+    # travis encrypt PEMAIL='test@example.com'
+    #
+    - secure: "NEQpl6xRtaHtiSpi0OsksunqhMEPf1FRv5EEdQTZ0Zb1R1bW6pemvWnKeJSpJAxXuxUE3bKfOl5ScoqYPPdDmavEvvdlJmLJn5Eav5ruJ0LDmvlg+FEQ1iKQxlWpfaslhRDtmAUCdHze0VZJmtOOyzpyA4GDVgasjH0FMGyZDKAL+qdM47MfpgRVh5x420RQByTLTaw28/thi47qFveKGKZT58b6TUBuVY1WtsR3JwCDi/1mKWtZussPpvIMQdKFyjaQ9zOFs1NMITO6e2vbG4u2BIbmOrO3+DFUyjQfv8AARIOzS6gdxNAv+25WvT+Kse1y6ZvCJc9YS49Ud5DJgi0U16aKi4q+ZjAv7Is3yg1mHSAop2y+LwIHeS5TxFLcApKlgL9ghGoF9Kc+FWHhoUZ4EI4x2YxASGcByR3rtto/yww89UduOoDzm9rChT7ilOLNpZIo15vqtnT+wdeSZZf85e6YBenVL8X3/gRl8dElJt+oXdoCO/h4lar3IZEM8p8JDo/byzog/h98cxKiFDzkLXjpvZh0oNbsXtnJreyprJCNy7D3XPSojS0UyklTIqoDjpQNc+6Vy1U6sx4LKd2A7tvCKF3Y2Cp36LrkW1NDPC6WqJP6I9l8QEdbszWgV6iRBkcvU0p5bRM3MIos2DMmHRguaL3YMlCTcJk6VG0="
+
+    #
+    # PPASS environment variable: represents the Pantheon account password for
+    # the above encrypted e-mail address. Run:
+    #
+    # travis encrypt PPASS='my_account_password'
+    #
+    - secure: "MtV/x1Gt7CJUANaSLPOSVOQhsOos8ZX58vXvsq51lRTKCOwazYp1D+nAb0x8SDSaAEt97oN4o9bwm1phqJ6RMnko35jr2lXkLu2hU2bohawsGWSXlC0gJ+draoKWH7j+nyQ6kDqZ80eEvtJY9cqLdnr6AVGf/nOJs4Omh2rDqy9VUhkgE0S3yJ97F6h1yUJkQY5C8R+ANBm2UgrFjX7zjFrAeJiG1qC0DxCNh9cWOHzaLgYYdvEj/vShoKk1R2UM5FIH1eW79WxiJ2cuPSKG2Ba87fuUT3addz3C2RZjRIo7NsGY2ZJwgCK/COU+1gfys7BOqRDFM6dDikZYdBNI+Lskxw2piP1qNV7LQkHpuKQuyuLz+NxqRQSZ6SLY0wIxN017u0qgCyKNoMBfS91ebh0jmP2sM7jysqwLYm379Cdu8KCRB/BO46mx2ctCCwHR6bzY9mKKoWC1IQMuMbBd0ECGU9Azh3zLuZtQQvIz3PaqD4YeIgu5NOhc5qR78hLoi/zzL/JQpwFp4K5geex0oLg2euCRWROAOkgBYZZteEXBcPq7rM2vvaJziEupRqJ8q3MAerLbP0Ru9kYnfxt1GmILsRYEpRrKi/NI1Oj7hTjUV09X/I182U39xMW7tnhjOorjUj407L2G89d1/6b1V6x0b5giiZKmU4OfDgnFMiY="
+
+before_install:
+    # Place a passphrase-free ssh key so that you can clone and push to your
+    # Pantheon git repository.
+    #
+    # Use the travis encrypt-file command to generate your own.
+    #
+    # See: http://docs.travis-ci.com/user/encrypting-files/
+    #
+    - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis_rsa.enc -out ~/.ssh/id_rsa -d
+    - chmod 0600 ~/.ssh/id_rsa
+
+install:
+    - bash scripts/install.sh
+
+before_script:
+  # Could add more things to prep for the test run here.
+
+script:
+    - bash scripts/run_tests.sh
+
+after_script:
+  # General-purpose clean-up could go here.
+
+after_success:
+  # Maybe promote to test here?
+
+after_failure:
+  # Maybe roll back?
+
+notifications:
+  email:
+    recipients:
+      # - panopoly-ci@googlegroups.com
+    on_success: always
+    on_failure: always

@@ -49,13 +49,13 @@ before_install:
     - chmod 0600 ~/.ssh/id_rsa
 
 install:
-    - bash scripts/install.sh
+    - bash private/scripts/install.sh
 
 before_script:
   # Could add more things to prep for the test run here.
 
 script:
-    - bash scripts/run_tests.sh
+    - bash private/scripts/test.sh
 
 after_script:
   # General-purpose clean-up could go here.

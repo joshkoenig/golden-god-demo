@@ -12,9 +12,6 @@ env:
     # Your Pantheon site's name.
     - PNAME='golden-god-demo'
 
-    # A random password for the Drupal site install.
-    - RANDPASS=$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 )
-
     # SECRET/PRIVATE VARIABLES
     #
     # These are created by using the travis command locally to encrypt some values.
@@ -27,7 +24,7 @@ env:
     #
     # travis encrypt PEMAIL='test@example.com'
     #
-    - secure: "NEQpl6xRtaHtiSpi0OsksunqhMEPf1FRv5EEdQTZ0Zb1R1bW6pemvWnKeJSpJAxXuxUE3bKfOl5ScoqYPPdDmavEvvdlJmLJn5Eav5ruJ0LDmvlg+FEQ1iKQxlWpfaslhRDtmAUCdHze0VZJmtOOyzpyA4GDVgasjH0FMGyZDKAL+qdM47MfpgRVh5x420RQByTLTaw28/thi47qFveKGKZT58b6TUBuVY1WtsR3JwCDi/1mKWtZussPpvIMQdKFyjaQ9zOFs1NMITO6e2vbG4u2BIbmOrO3+DFUyjQfv8AARIOzS6gdxNAv+25WvT+Kse1y6ZvCJc9YS49Ud5DJgi0U16aKi4q+ZjAv7Is3yg1mHSAop2y+LwIHeS5TxFLcApKlgL9ghGoF9Kc+FWHhoUZ4EI4x2YxASGcByR3rtto/yww89UduOoDzm9rChT7ilOLNpZIo15vqtnT+wdeSZZf85e6YBenVL8X3/gRl8dElJt+oXdoCO/h4lar3IZEM8p8JDo/byzog/h98cxKiFDzkLXjpvZh0oNbsXtnJreyprJCNy7D3XPSojS0UyklTIqoDjpQNc+6Vy1U6sx4LKd2A7tvCKF3Y2Cp36LrkW1NDPC6WqJP6I9l8QEdbszWgV6iRBkcvU0p5bRM3MIos2DMmHRguaL3YMlCTcJk6VG0="
+    - secure: "lgybTlfvn8PXn1CglWCvr7BXeIPABvMZNuURcb1OZaTlv0FWzA6AdirdcUO70vnKQqJzDFQwtE1Zuk7TqM0gs9aSYl3o2rDs8+BaMQK+dQtLi06wMcecBNIWfnBoDjFv54eiv1adQWmitSChi/KlbJGfeD7oLVEVheAKYbzQau1kQGG+K0QnvMx3ChatH3hEb+aQ54u99WJFvxpZOOwynmozSUfEtVFtkhyhzui11GiSXqDTJL9PcmwpWdRtMdtj3lEY2AuWGdf8ybNcWumgzp2f8PnqniZWmXsrDHBpKe6hEty9K0iRxRuG+g99101/DR29LLELXNwD1mI4hLt8fi9595nCVrO+eHl5jeNskk8hbcBddSoqGEfMJSycbvNVttSu3XLAr/EDowpr84gfFeoAKXzIbstXPliQ7UvuJ4Z/RxBmCIZAScpdenkSww0apD1id5f38614H3pDLNgfJajabp1P4/NHjleNgx5xrdDwovsoLBq77okasnFxGD6IZ5vji9SOBImbDzyKOjXTFe6Ef06TsZsXsfYfdQyohLQ9wn+T895QT2onJkOCSJ1UGTaEMv9hCwnIGsuQtrggWjlGwmFxkE2WEFU3KUdEMwFdFzcm1QR0sYHNiSm3k6y0knzqxtp7z8mSLNdMCVL4Q6Gp7f4iuWpGRDlF5NDhdBU="
 
     #
     # PPASS environment variable: represents the Pantheon account password for
@@ -35,7 +32,7 @@ env:
     #
     # travis encrypt PPASS='my_account_password'
     #
-    - secure: "MtV/x1Gt7CJUANaSLPOSVOQhsOos8ZX58vXvsq51lRTKCOwazYp1D+nAb0x8SDSaAEt97oN4o9bwm1phqJ6RMnko35jr2lXkLu2hU2bohawsGWSXlC0gJ+draoKWH7j+nyQ6kDqZ80eEvtJY9cqLdnr6AVGf/nOJs4Omh2rDqy9VUhkgE0S3yJ97F6h1yUJkQY5C8R+ANBm2UgrFjX7zjFrAeJiG1qC0DxCNh9cWOHzaLgYYdvEj/vShoKk1R2UM5FIH1eW79WxiJ2cuPSKG2Ba87fuUT3addz3C2RZjRIo7NsGY2ZJwgCK/COU+1gfys7BOqRDFM6dDikZYdBNI+Lskxw2piP1qNV7LQkHpuKQuyuLz+NxqRQSZ6SLY0wIxN017u0qgCyKNoMBfS91ebh0jmP2sM7jysqwLYm379Cdu8KCRB/BO46mx2ctCCwHR6bzY9mKKoWC1IQMuMbBd0ECGU9Azh3zLuZtQQvIz3PaqD4YeIgu5NOhc5qR78hLoi/zzL/JQpwFp4K5geex0oLg2euCRWROAOkgBYZZteEXBcPq7rM2vvaJziEupRqJ8q3MAerLbP0Ru9kYnfxt1GmILsRYEpRrKi/NI1Oj7hTjUV09X/I182U39xMW7tnhjOorjUj407L2G89d1/6b1V6x0b5giiZKmU4OfDgnFMiY="
+    - secure: "GnWczmPfZEt9kWPA5H49mMC6Xp7SZmTTNtQVjQU+IJs0qHeZ8bUafl/b6j3V11Jmt2gU5vQ9uTNGNRhgXvF0fBQrKaQ3v1OJWgLgclg8oOD4kK+2ujoEYQ055H0eRNdwKGuzQqWE+p5euntMp43RObZWHRSs+9ppM/vxgKnkI6WJHiNP3EaJ2AwgBOiW6MdIyLLPZwC0FV3yt65YSHZkx4RHv5R1WChJ0XRN+giFytQqpBn7QA6fdoAmxqKsGxEGJyniRxv5YoBhqVqtEPcUYIbW80eIWZEmxiuS6bzTaJS2x+sJ8UjLQc7yknaMa7ws4VP2HqG5wBBD61jLtgTaWrzFBjZIe0gZTn4PkyDm4KTwmReT5o8wFRDG8I1O+ynlq//RCPolw8UyFVLafcAcHLS6LdAwUvtoTsfukso2qjilZSJFmgpOI5u01ATLLIp3Ut3repzvbn0Z6pE/Dk+E32MPKtMMPYeBhhlL2lIAhZAm2robgWDK7b5FBo2liW1QDgQ3H/hrJ+GJR3WbG6t/qWg27cBW8vySck1eOck9w5arm/I+gjVtJVyWrTR/D/UpL5Z+kElu65JUv2u8NmDMmXzIfiJo2sWf319vEr7ar/agyYPMPWTBpG/ghfM6LApy/ojJDjmJiVpAAcSvVlNVaTZjoppDy8CVXNwMGLT0u/c="
 
 before_install:
     # Place a passphrase-free ssh key so that you can clone and push to your
@@ -45,7 +42,7 @@ before_install:
     #
     # See: http://docs.travis-ci.com/user/encrypting-files/
     #
-    - openssl aes-256-cbc -K $encrypted_dfede703c127_key -iv $encrypted_dfede703c127_iv -in travis_rsa.enc -out ~/.ssh/id_rsa -d
+    - openssl aes-256-cbc -K $encrypted_c8f15b38deee_key -iv $encrypted_c8f15b38deee_iv -in pantheon_bot_rsa.enc -out ~/.ssh/id_rsa -d
     - chmod 0600 ~/.ssh/id_rsa
 
 install:

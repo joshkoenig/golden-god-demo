@@ -15,3 +15,10 @@ echo "Authenticating into terminus"
 } &> /dev/null
 
 ./terminus sites list
+
+if [ $TRAVIS_PULL_REQUEST ] ; then
+   echo "Using trav-$TRAVIS_BUILD_NUMBER for branch"
+   export PENV="trav-$TRAVIS_BUILD_NUMBER"
+   echo "./terminus site create-env --site=$PNAME --env=$PENV"
+   ./terminus site create-env --site=$PNAME --env=$PENV
+fi

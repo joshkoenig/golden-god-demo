@@ -11,5 +11,9 @@ echo "Using BASE_URL $BASE_URL"
 export BEHAT_PARAMS="context[parameters][base_url]=$BASE_URL"
 export PATH="$TRAVIS_BUILD_DIR/vendor/bin:$PATH"
 
+export PPASS = "REDACTED"
+
+printenv
+
 echo "Running Behat tests"
 behat
